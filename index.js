@@ -21,8 +21,8 @@ const callApi = async () => {
 
     // console.log(data);
 
-    const result = await data.json();
-    return result;
+    //const result = await data.json();
+    return data;
   } catch (ex) {
     console.log("error",ex);
   }
