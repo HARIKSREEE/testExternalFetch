@@ -1,12 +1,12 @@
 const nodeFetch = require("node-fetch");
-
+const axios = require("axios").default;
 const express = require("express");
 const app = express();
 const port = 8080;
 
 const callApi = async () => {
   try {
-    const data = await nodeFetch(
+    const data = await axios.get(
       "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=296&date=09-05-2021",
       {
         headers: {
@@ -24,7 +24,7 @@ const callApi = async () => {
     //const result = await data.json();
     return data;
   } catch (ex) {
-    console.log("error",ex);
+    console.log("error", ex);
   }
 };
 
@@ -35,13 +35,14 @@ app.get("/", (req, res) => {
 app.get("/centers", async (req, res) => {
   try {
     const centers = await callApi();
-    res.send(centers);
+    console.log("centers", centers.data);
+    res.send(centers.data);
   } catch (ex) {
-    res.send(errror);
+    res.send("errror", ex);
   }
 });
 
 app.listen(process.env.PORT || port, () => {
- // callApi();
+  // callApi();
   console.log(`Example app listening at http://localhost:${port}`);
 });
