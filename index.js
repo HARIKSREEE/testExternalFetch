@@ -22,7 +22,7 @@ const callApi = async () => {
     // console.log(data);
 
     const result = await data.json();
-    console.log("result", result);
+    return result;
   } catch (ex) {
     console.log("error".ex);
   }
@@ -30,6 +30,11 @@ const callApi = async () => {
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
+});
+
+app.get("/centers", async (req, res) => {
+  const centers = await callApi();
+  res.send(centers);
 });
 
 app.listen(process.env.PORT || port, () => {
