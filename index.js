@@ -24,7 +24,7 @@ const callApi = async () => {
     const result = await data.json();
     return result;
   } catch (ex) {
-    console.log("error".ex);
+    console.log("error",ex);
   }
 };
 
@@ -33,11 +33,15 @@ app.get("/", (req, res) => {
 });
 
 app.get("/centers", async (req, res) => {
-  const centers = await callApi();
-  res.send(centers);
+  try {
+    const centers = await callApi();
+    res.send(centers);
+  } catch (ex) {
+    res.send(errror);
+  }
 });
 
 app.listen(process.env.PORT || port, () => {
-  callApi();
+ // callApi();
   console.log(`Example app listening at http://localhost:${port}`);
 });
