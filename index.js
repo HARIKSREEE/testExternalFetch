@@ -10,7 +10,8 @@ const callApi = async () => {
       "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=296&date=09-05-2021",
       {
         headers: {
-          accept: "application/json"
+          accept: "application/json",
+          "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36 Edg/90.0.818.56"
         },
       }
     );
@@ -39,6 +40,6 @@ app.get("/centers", async (req, res) => {
 });
 
 app.listen(process.env.PORT || port, () => {
-  callApi();
+  //callApi();
   console.log(`Example app listening at http://localhost:${port}`);
 });
