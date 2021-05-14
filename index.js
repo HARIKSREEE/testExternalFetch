@@ -39,6 +39,6 @@ app.get("/centers", async (req, res) => {
 });
 
 app.listen(process.env.PORT || port, () => {
-  // callApi();
+  callApi();
   console.log(`Example app listening at http://localhost:${port}`);
 });
