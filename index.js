@@ -11,7 +11,8 @@ const callApi = async () => {
       {
         headers: {
           accept: "application/json",
-          "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36 Edg/90.0.818.56"
+          "user-agent":
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36 Edg/90.0.818.56",
         },
       }
     );
@@ -19,7 +20,8 @@ const callApi = async () => {
     // console.log(data);
 
     //const result = await data.json();
-    return data.json();
+    console.log("Data received", data);
+    return data;
   } catch (ex) {
     console.log("error", ex);
     return "error";
@@ -27,15 +29,19 @@ const callApi = async () => {
 };
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.status(200).send("0.0.1");
 });
 
 app.get("/centers", async (req, res) => {
   try {
     const centers = await callApi();
-    console.log('response',centers);
+    
     //console.log("centers", centers.data);
-    res.send(centers);
+    centers?.json().then((data)=> {
+      res.status(200).send(data);
+      console.log("response", data);
+    })
+   
   } catch (ex) {
     res.send("errror", ex);
   }
