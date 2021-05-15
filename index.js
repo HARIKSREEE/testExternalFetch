@@ -7,10 +7,12 @@ const port = 8080;
 const callApi = async () => {
   try {
     const data = await nodeFetch(
-      "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=296&date=09-05-2021",
+      "http://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=296&date=09-05-2021",
       {
         headers: {
           accept: "application/json",
+          "host": "cdn-api.co-vin.in",
+          "origin": "https://www.cowin.gov.in",
           "user-agent":
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36 Edg/90.0.818.56",
         },
@@ -43,7 +45,8 @@ app.get("/centers", async (req, res) => {
     })
    
   } catch (ex) {
-    res.send("errror", ex);
+    console.log("error",ex)
+    res.status(500).send("errror", ex);
   }
 });
 
